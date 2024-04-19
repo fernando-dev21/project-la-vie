@@ -1,0 +1,137 @@
+/** 
+
+
+import React from 'react';
+import { StyleSheet, Image, View, Text, TouchableOpacity, FlatList, ScrollView } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+
+const Tab = createBottomTabNavigator();
+
+const HomeScreen = () => {
+  const images = [
+    { name: 'Image 1', source: require('./image1.jpg') },
+    { name: 'Image 2', source: require('./image2.jpg') },
+    { name: 'Image 3', source: require('./image3.jpg') },
+    { name: 'Image 4', source: require('./image4.jpg') },
+    { name: 'Image 5', source: require('./image5.jpg') },
+    { name: 'Image 6', source: require('./image6.jpg') },
+  ];
+
+  return (
+    <View style={styles.container}>
+      
+      <Image
+        source={require('./top.jpg')} // Change the path to your image
+        style={styles.topImage}
+      />
+
+      <ScrollView>
+
+             <View style={styles.topicContainer}>
+          <Text style={styles.topicTitle}>Topics</Text>
+          <FlatList
+            data={[
+              { key: 'Topic 1' },
+              { key: 'Topic 2' },
+              { key: 'Topic 3' },
+              { key: 'Topic 4' },
+              { key: 'Topic 5' },
+            ]}
+            renderItem={({ item }) => (
+              <TouchableOpacity style={styles.topicButton}>
+                <Text style={styles.topicButtonText}>{item.key}</Text>
+              </TouchableOpacity>
+            )}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+
+            <View style={styles.imageContainer}>
+          <FlatList
+            data={images}
+            renderItem={({ item }) => (
+              <TouchableOpacity style={styles.imageItem}>
+                <Image source={item.source} style={styles.image} />
+                <Text style={styles.imageName}>{item.name}</Text>
+              </TouchableOpacity>
+            )}
+            numColumns={2}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+      </ScrollView>
+
+      
+      <Tab.Navigator>
+      
+      </Tab.Navigator>
+    </View>
+  );
+};
+
+// Styles
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  topImage: {
+    height: 180, // Adjust height as needed
+    resizeMode: 'cover',
+  },
+  topicContainer: {
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+  },
+  topicTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  topicButton: {
+    backgroundColor: 'lightblue',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginRight: 10,
+    borderRadius: 20,
+  },
+  topicButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  imageContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    marginTop: 20,
+  },
+  imageItem: {
+    width: '48%', // Adjust width as needed
+    marginBottom: 20,
+  },
+  image: {
+    width: '100%',
+    height: 150,
+    resizeMode: 'cover',
+    borderRadius: 10,
+  },
+  imageName: {
+    marginTop: 5,
+    textAlign: 'center',
+  },
+});
+
+// App component
+export default function App() {
+  return (
+    <NavigationContainer>
+      <HomeScreen />
+    </NavigationContainer>
+  );
+}
+
+**/
+
+
